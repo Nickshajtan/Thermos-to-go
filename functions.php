@@ -344,11 +344,14 @@ if( is_plugin_active('woocommerce/woocommerce.php') ){
         if ( ! empty( $_POST['billing_apartment'] ) ) {
             update_post_meta( $order_id, 'billing_apartment', sanitize_text_field( $_POST['billing_apartment'] ) );
         }
+        else{
+            update_post_meta( $order_id, 'billing_apartment', 'Новая почта' );
+        }
     }
     add_action( 'woocommerce_admin_order_data_after_billing_address', 'custom_field_display_admin_order_meta', 10, 1 );
 
     function custom_field_display_admin_order_meta($order){
-        echo '<p><strong>'.__('Транспортная компания').':</strong> ' . get_post_meta( $order->id, 'billing_apartment', true ) . '</p>';
+        echo '<p><strong>'.__('Транспортная компания').':</strong> ' . get_post_meta( $order->id, '_billing_apartment', true ) . '</p>';
     }
     // Выводим значения полей в шаблоне письма с заказом
     add_filter('woocommerce_email_order_meta_keys', 'email_checkout_field_order_meta_keys');
@@ -388,4 +391,26 @@ if( is_admin() ){
 	remove_action( 'wp_update_plugins', 'wp_update_plugins' );
 	remove_action( 'wp_update_themes', 'wp_update_themes' );
 	add_filter( 'pre_site_transient_browser_'. md5( $_SERVER['HTTP_USER_AGENT'] ), '__return_true' );
+}
+/** Endings for timer **/
+function get_num_ending($number, $ending_arr) 
+{ 
+    $text['day'] = __('День').' "%s"';
+    
+    $number = $number % 100; 
+    if ($number >= 11 && $number <= 19) { 
+        $ending = $ending_arr[2]; 
+    } else { 
+        $i = $number % 10; 
+        switch ($i) { 
+            case (1): $ending = $ending_arr[0]; 
+                break; 
+            case (2): 
+            case (3): 
+            case (4): $ending = $ending_arr[1]; 
+                break; 
+            default: $ending = $ending_arr[2]; 
+        } 
+    } 
+    return $ending; 
 }

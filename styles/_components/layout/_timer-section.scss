@@ -1,0 +1,64 @@
+section#timer{
+        h2{
+            color: $red;
+            font-size: $middler;
+            padding-bottom: 20px;
+        }
+        p.desc{
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            padding-bottom: 10px;
+            letter-spacing: 4px;
+        }
+        #clockdiv{
+            span{
+                display: block;
+                color: $white;
+                font-family: $ft40, sans-serif;
+                font-weight: 400;
+                background-color: $blue;
+                font-size: $large;
+                letter-spacing: 5px;
+                padding: 10px;
+            }
+            .smalltext{
+                text-transform: uppercase;
+                color: $red;
+                padding: 15px 0 5px 0;
+                font-weight: 600;
+            }
+            &.hidden{
+                display: none;
+            }
+            #deadline-messadge.hidden{
+                display: none;
+            }
+            #deadline-messadge.visible{
+                padding: 10px 0 10px 0;
+                font-size: $middler;
+                text-transform: uppercase;
+            }
+        }
+        .box-button {
+                position: relative;
+                top: 30px;
+        }
+        background-size: cover;
+        background-position: center;
+        @-moz-document url-prefix() {
+            background-image: url(../img/bg-min.png);
+        }
+        &.bgimg{
+           background-image: url(../img/bg-min.webp);
+            &.replace{
+               background-image: url(../img/bg-min-icon.jpg);         
+            }
+        }
+}
+@media screen and ( max-width: 760px ){
+       section#timer{
+            #clockdiv span{
+                font-size: $bigger;
+            }
+        }
+}

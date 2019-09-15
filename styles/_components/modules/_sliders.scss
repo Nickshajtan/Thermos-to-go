@@ -1,0 +1,148 @@
+.slick{
+    padding: 20px 0 30px 0;
+    .slick-arrow{
+        width: 45px;
+        height: auto;
+        object-fit: contain;
+        -o-object-fit: contain;
+        &.slick-prev{
+            -webkit-transform: rotate(-90deg);-ms-transform: rotate(-90deg);transform: rotate(-90deg);
+        }
+        &.slick-next{
+            -webkit-transform: rotate(90deg);-ms-transform: rotate(90deg);transform: rotate(90deg);
+        }
+    }
+}
+.review-wrapper{
+        overflow: hidden;
+        position: relative;
+        img{
+            position: relative;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            -o-object-fit: cover;
+        }
+        p.header{
+            position: absolute;
+            top: 45%;
+            width: 100%;
+        }
+}
+.slick-prev, .slick-next{
+	top: 40%!important;
+}
+/* -- Reviews slider -- */
+.reviews .review-wrapper{
+	cursor: pointer;
+	min-height: 450px;
+	height:auto;
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+            flex-direction: column;
+    &:hover{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+                align-items: flex-start;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+        .white__block{
+            display: block;
+        }
+    }
+    img{
+        height: 250px;
+        object-fit: cover;
+        -o-object-fit: cover;
+    }
+    .white__block{
+        display: none;
+        color: $blue;
+        padding: 25px 10px 20px 10px;
+        background-color: $white;
+        -webkit-transition: .2s;
+        -o-transition: .2s;
+        transition: .2s;
+        p.header{
+            color: $blue;
+            position: static;
+            font-size: $regular * 1.1;
+            font-weight: 700;
+        }
+        .box-button{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            width: 70%;
+            text-align: center;
+            display:block;
+        }
+        .morecontent span{
+            display: none;
+            &.box-button{
+                display:block;
+            }
+        }
+    }
+}
+.reviews .slick-arrow{
+	width: 45px;
+    height: auto;
+    object-fit: contain;
+    -o-object-fit: contain;
+    &.slick-prev{
+        -webkit-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        top: 25%!important;
+    }
+    &.slick-next{
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        top: 25%!important;
+    }
+}
+/*-- Help text --*/
+.review-wrapper{
+    .help{
+        display: block;
+        position: absolute;
+        bottom: 100px;
+        font-size: $regular;
+         -webkit-transition: .2s;
+        -o-transition: .2s;
+        transition: .2s;
+    }
+    &:hover{
+        .help{
+            display: none;
+        }
+    }
+}
+@media screen and ( max-width: 1024px ){
+    .slick-initialized{
+        .slick-list{
+            padding: 0 10%;
+        }
+    }
+}

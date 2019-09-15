@@ -1,0 +1,51 @@
+/*-- About us -**/
+.wy__we{
+    padding-top: 40px;
+        .progressive img{
+            width: 100%;
+            min-width: 100%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-height: 90px;
+            margin-bottom: 25px;
+            min-height:90px;
+	        height:90px;
+        }
+        p.header{
+            text-transform: uppercase;
+            color: $red;
+            font-size: $regular * 1.2;
+            font-weight: 700;
+            margin-bottom: 0;
+            display: block;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        p.text{
+            display: block;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;   
+            font-weight: 600;
+        }
+}
+@media screen and (max-width:1199px){
+	section .wy__we p.header{
+		font-size: $regular;
+	}
+	section .wy__we p.text{
+		font-size: $regular * .9;
+	}
+}
+@media screen and (max-width:900px){
+	section .wy__we p.text, section .wy__we p.header{
+		 width: 55%;
+	}
+}
+@media screen and (max-width:760px){
+	section .wy__we p.text{
+		 width: 100%;
+	}
+}

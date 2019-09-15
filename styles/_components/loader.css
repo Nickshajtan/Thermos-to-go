@@ -1,0 +1,81 @@
+/*--- Loader  ---*/
+#loader {
+  -webkit-animation: animate 1.5s linear infinite;
+          animation: animate 1.5s linear infinite;
+  clip: rect(0, 80px, 80px, 40px); 
+  height: 80px;
+  width: 80px;
+  position: fixed;
+  left: calc(50% - 40px);
+  top: calc(50% - 40px);
+  z-index: 16;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s;
+}
+@-webkit-keyframes animate {
+  0% { 
+    -webkit-transform: rotate(0deg); 
+            transform: rotate(0deg)
+  }
+  100% { 
+    -webkit-transform: rotate(220deg); 
+            transform: rotate(220deg)
+  }
+}
+@keyframes animate {
+  0% { 
+    -webkit-transform: rotate(0deg); 
+            transform: rotate(0deg)
+  }
+  100% { 
+    -webkit-transform: rotate(220deg); 
+            transform: rotate(220deg)
+  }
+}
+#loader:after {
+  -webkit-animation: animate2 1.5s ease-in-out infinite;
+          animation: animate2 1.5s ease-in-out infinite;
+  clip: rect(0, 80px, 80px, 40px);
+  content:'';
+  border-radius: 50%; 
+  height: 80px;
+  width: 80px;
+  position: absolute; 
+} 
+@-webkit-keyframes animate2 {
+  0% {
+    -webkit-box-shadow: inset #fff 0 0 0 17px;
+            box-shadow: inset #fff 0 0 0 17px;
+    -webkit-transform: rotate(-140deg);
+            transform: rotate(-140deg);
+  }
+  50% {
+    -webkit-box-shadow: inset #fff 0 0 0 2px;
+            box-shadow: inset #fff 0 0 0 2px;
+  }
+  100% {
+    -webkit-box-shadow: inset #fff 0 0 0 17px;
+            box-shadow: inset #fff 0 0 0 17px;
+    -webkit-transform: rotate(140deg);
+            transform: rotate(140deg);
+  }
+} 
+@keyframes animate2 {
+  0% {
+    -webkit-box-shadow: inset #fff 0 0 0 17px;
+            box-shadow: inset #fff 0 0 0 17px;
+    -webkit-transform: rotate(-140deg);
+            transform: rotate(-140deg);
+  }
+  50% {
+    -webkit-box-shadow: inset #fff 0 0 0 2px;
+            box-shadow: inset #fff 0 0 0 2px;
+  }
+  100% {
+    -webkit-box-shadow: inset #fff 0 0 0 17px;
+            box-shadow: inset #fff 0 0 0 17px;
+    -webkit-transform: rotate(140deg);
+            transform: rotate(140deg);
+  }
+}

@@ -1,0 +1,82 @@
+section{
+    h2{
+        text-transform: uppercase;
+        color: $blue;
+        font-family: $ft40, sans-serif;
+        font-weight: 500;
+        letter-spacing: 2px;
+        font-size: $middler;
+        mark{
+            color: $red;
+            background: $transparent;
+            span{
+              font-family: $Qwigley;
+              text-transform: none;
+              font-size: $big;
+              padding-left: 15px;
+            }
+        }
+        &.slick-header{
+            padding: 60px 0 15px 0;
+            &.action{
+                color: $red;
+            }
+        }
+    }
+    h3{
+        text-transform: uppercase;
+        color: $blue;
+        font-family: $ft40, sans-serif;
+        font-weight: 500;
+        letter-spacing: 2px;
+        font-size: $middler;
+        margin-bottom: 25px;
+    }
+    //blue bg sections
+    &.bg__water{
+        background-size: cover;
+        padding-top: 170px;
+        @-moz-document url-prefix() {
+            background-image: url(../img/bgblue-min.png);
+        }
+        &.bgimg{
+           background-image: url(../img/bgblue-min.webp);
+            &.replace{
+               background-image: url(../img/bgblue-min-icon.jpg);         
+            }
+        }
+        h2{
+            color: $white;
+        }
+        p.header{
+            color: $white;
+        }
+        .desc{
+                font-size: $regular * 1.1;
+                font-weight: 700;
+                margin-bottom: 0;
+                display: block;
+                color: $white;
+        }
+    }   
+}
+@media screen and ( max-width: 1024px ){
+    section{
+        &.bg__water{
+            background-image: none;
+            background-color: $blue;
+            &.bgimg{background-image: none;}
+            p.header{
+                margin-bottom: 1.2rem;    
+            }
+        }
+    }
+}
+@media screen and ( max-width: 760px ){
+    section{
+        padding: 50px 0 50px 0;
+        h2{
+            font-size: $middler;
+        }
+    }
+}

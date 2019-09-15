@@ -1,0 +1,84 @@
+section#products{
+    h2{
+            color: $red;
+            padding-bottom: 50px;
+    }
+    a, a:hover, a:focus{
+            position: relative;
+            padding: 10px;
+            .box-button, .box-button:hover{
+                    display: none;
+                    text-align: center;
+                    background: transparent;
+                    border: 2px solid $red;
+                    color: $red;
+                    position: absolute;
+                    top: 40%;
+                    width: 70%;
+                    font-weight: 600;
+                    cursor: pointer;
+                    padding: 10px 20px;
+            }
+            .box-button:focus{
+                    background: $red;
+                    border: 2px solid $red; 
+                    color: $white;
+            }
+    }
+    a:hover{
+            img{
+                 -webkit-transition: .2s;-o-transition: .2s;transition: .2s;
+                 -webkit-filter: opacity(0.4);    filter: opacity(0.4);
+            }
+            .box-button, .box-button:hover{
+                -webkit-transition: .2s;-o-transition: .2s;transition: .2s;
+                display: block;
+            }
+    }
+}
+.product-title{
+    padding: 10px 0 0 0;
+    font-size: $regular * 1.2;
+    font-weight: 700;
+    color: $blue;
+}
+.product-main-sale{
+    text-decoration: line-through;
+    color: $blue;
+    font-size: $regular;
+    font-weight: 500;
+}
+.product-action-sale{
+    color: $red;
+    font-size: $regular * 1.2;
+    font-weight: 800;
+}
+.one__product{
+	min-height:510px;
+    a{
+        padding: 0;
+        img{
+            height: 430px;
+            max-width: 100%;
+            object-fit: cover;
+            -o-object-fit: cover;
+            padding: 0 10px;
+            border-radius: 20px;
+            &.hidden{display:none;}
+        }
+        &:hover{
+            img{
+                display:none;
+                &.hidden{
+                    display:block;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:760px){
+   .one__product a img{
+		height: 400px;
+	} 
+}
+

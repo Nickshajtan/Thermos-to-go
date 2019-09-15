@@ -105,19 +105,28 @@ get_header(); ?>
                             <p class="col-12 text-center desc"><?php echo __('до конца акции осталось:'); ?></p>
                             <div class="col-12 timer-wrapper">
                                 <div id="clockdiv" class="row">
-                                    <div class="col-4">
+                                    <div class="col-4 time-message">
                                         <span class="days text-center"></span>
-                                        <div class="smalltext text-center"><?php echo __('дней'); ?></div>
+                                        <?php if (function_exists('get_num_ending')) : ?>
+                                            <?php $number = date('j', strtotime(get_field('timer')) ) - date('j') - 1; ?>
+                                            <div class="smalltext text-center days-text"><?php echo get_num_ending( $number, array(__('день'), __('дня'), __('дней'))); ?></div>
+                                        <?php endif; ?>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-4 time-message">
                                         <span class="hours text-center"></span>
-                                        <div class="smalltext text-center"><?php echo __('часов'); ?></div>
+                                        <?php if (function_exists('get_num_ending')) : ?>
+                                            <?php $number = 23 - date('H'); /* H - 24 hours, h -12 hours */?>
+                                            <div class="smalltext text-center hours-text"><?php echo get_num_ending( $number, array(__('час'), __('часа'), __('часов'))); ?></div>
+                                        <?php endif; ?>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-4 time-message">
                                         <span class="minutes text-center"></span>
-                                        <div class="smalltext text-center"><?php echo __('минут'); ?></div>
+                                        <?php if (function_exists('get_num_ending')) : ?>
+                                            <?php $number = 59 - date('i'); ?>
+                                            <div class="smalltext text-center minute-text"><?php echo get_num_ending( $number, array(__('минута'), __('минуты'), __('минут'))); ?></div>
+                                        <?php endif; ?>
                                     </div>
-                                    <div id="deadline-messadge" class="col-12 text-center hidden">
+                                    <div id="deadline-messadge" class="col-12 text-center hidden" style="font-size: 2rem;">
                                       <?php echo __('Время истекло!'); ?>
                                     </div>
                                 </div>
@@ -304,8 +313,13 @@ get_header(); ?>
                                                                 <?php echo $cycl['cycle_name']; ?>
                                                             </p>
                                                             <span class="one__rewiew__text"><?php echo $cycl['cycle_text']; ?></span>
-<!--                                                            <span class="box-button d-block"><?php /*echo __('Подробнее'); */?></span>-->
                                                         </span>
+                                                        <?php if( !wp_is_mobile() ) : ?>
+                                                            <span class="help text-white w-100 text-center"><?php echo __('Наведите курсор на фото'); ?></span>
+                                                        <?php endif; ?>
+                                                        <?php if( wp_is_mobile() ) : ?>
+                                                            <span class="help text-white w-100 text-center"><?php echo __('Кликните по фото'); ?></span>
+                                                        <?php endif; ?>
                                                     </a>
                                             <?php endif; ?>
                                 <?php endforeach; ?>

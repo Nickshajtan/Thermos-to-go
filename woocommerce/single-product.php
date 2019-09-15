@@ -9,12 +9,12 @@
                       <div class="col-12 col-lg-3 ">
                          <div class="row">
                               <?php foreach( $attachment_ids as $attachment_id ) : ?>
-                                  <div class="gallery__wrap col-6 col-lg-12"><?php echo wp_get_attachment_image( $attachment_id, 'shop_catalog' ); ?></div>
+                                  <div class="gallery__wrap col-6 col-lg-12"><?php echo wp_get_attachment_image( $attachment_id, 'medium' ); ?><span class="hidden d-none"><?php echo wp_get_attachment_image_url($attachment_id,'large'); ?></span></div>
                               <?php endforeach; ?>
                          </div> 
                       </div>
                        <div class="col-12 col-lg-9 d-none d-lg-block text-right main-product-image">
-                           <a href="<?php the_post_thumbnail_url(); ?>" class="fancybox"><?php echo get_the_post_thumbnail(); ?></a>
+                           <a href="<?php the_post_thumbnail_url(); ?>" class="fancybox"><?php the_post_thumbnail(array(500,1024)); ?></a>
                        </div>
                 </div>
             </div>
@@ -65,11 +65,16 @@
                               if( $cart != 0 ) : ?>
                                   <?php $cart = 'cart'; ?>
                               <?php endif; ?>
-                       <button type="submit" class="single_add_to_cart_button button alt box-button w-50 d-block ml-auto mr-auto <?php echo $cart; ?>"><?php echo __('Купить сейчас'); ?></button>
+                       <button type="submit" class="single_add_to_cart_button button alt box-button w-50 d-block ml-auto mr-auto <?php echo $cart; ?>" style="cursor:pointer;"><?php echo __('Купить сейчас'); ?></button>
                       <?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
                      </form>
                     <script>
                         jQuery(document).ready(function($) {
+                            $('.gallery__wrap').each(function(){
+                                var href = $(this).find('span.hidden').text(); 
+                                $(this).find('img').wrap("<a href='" + href + "' rel='group' data-fancybox='group' class='fancybox gallery__modal'></a>"); 
+                            });
+                            $('.gallery__modal').fancybox({protect: true,cyclic:true});
                             var ipt = $('.quantity input[name=quantity]');
                             ipt.addClass('d-none');
                             var div = $('.quantity-wrapper .value');
@@ -96,6 +101,14 @@
                                     ipt.val(count);
                                 }
                             });
+                            /*var size = ipt.attr('size');
+                            if( size > 0 ){
+                                $('.single_add_to_cart_button').on('click', function(){
+
+                                        var href = window.location.href;
+                                        window.location.href = href +'/checkout';
+                                });
+                            }*/
                         });
                     </script>
  <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
@@ -121,10 +134,11 @@
                    <?php while ($featured_query->have_posts()) :
                            $featured_query->the_post();
                            $product = get_product( $featured_query->post->ID );  ?>
-                     <div class="col-12">
+                     <div class="col-12 one__product ">
                             <?php $img = get_the_post_thumbnail_url(); ?>
                          <a href="<?php the_permalink(); ?>" class="progressive replace row d-flex flex-column align-items-center" data-href="<?php echo $img; ?>">
                              <?php the_post_thumbnail('lazy-load', array('class' => "preview",)); ?>
+                             <img src="<?php the_field('img__hover'); ?>" alt="" width="400" height="450" class="hidden">
                              <span class="see box-button"><?php echo __('Быстрый просмотр'); ?></span>
                              <span class="col-12 product-title text-center d-block"><?php the_title(); ?></span>
                              <span class="w-100 d-flex">
@@ -140,4 +154,5 @@
     </div>
 </section>
 <?php endif; ?>
+<style>@media screen and (min-width: 900px){.text__wrap{padding-left: 50px;}}</style>
 <?php get_footer(); ?>

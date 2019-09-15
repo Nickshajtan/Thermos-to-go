@@ -1,0 +1,77 @@
+html, body{
+    font-size: 100%;
+    font-family:  $museo, sans-serif;
+    font-display: swap;
+    font-style:normal;
+    font-weight: 500;
+    background-color: $white;
+    line-height: 1.2;
+    color: $blue;
+}
+a, a:hover, a:focus, a:visited{
+    text-decoration: none!important;
+    box-shadow: none!important;
+    outline: none!important;
+}
+section{
+    padding: 100px 0 100px 0;
+    a,a:hover, a:focus, a:visited{ color: $blue; }
+}
+img{
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    -o-object-fit: contain;
+}
+section .row .col-12.header{
+    text-transform: uppercase;
+    color: $blue;
+    text-align: center;
+    font-size: $bigger;
+    padding-bottom: 20px;
+    font-family: $ft40, sans-serif;
+    font-weight: bold;
+}
+//Buttons
+a:focus, button:focus{
+    outline: none;
+    box-shadow: none;
+}
+.box-button{
+        padding: 10px 20px;    
+        background-color: $red;
+        color: $white;
+        border: 1px solid $red;
+    &:hover, &:focus{
+        -webkit-transition: .2s;-o-transition: .2s;transition: .2s;
+        color: $red;
+        cursor: pointer;
+        background: transparent;
+        border: 1px solid $red;
+        outline: none;
+        box-shadow:none;
+    }
+}
+//Pagination
+.paginations{
+    span{color: $red;}
+    a{color: $blue;}
+}
+//Ias 
+.ias-trigger{
+	color:$white!important;
+	margin-top:30px;
+    &:hover .box-button:hover, &:hover .box-button, & .box-button:hover, &:hover{
+	    color:$red!important;
+        a{
+            background: transparent;
+            border: 1px solid $red;
+        }
+    }
+    .box-button{
+        color:$white;
+        &:hover{
+            color:$red;
+        }
+    }
+}

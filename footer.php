@@ -12,7 +12,7 @@
                                     }
                             ?>
                             <?php if( !empty( $logo_img ) ){ echo $logo_img; }
-                                  else{ echo '<p class="logo">Термос <br><span>to GO</span></p>'; }
+                                  else{ echo '<p class="logo"><a href="' . home_url() . '" class="logo__url">Термос <br><span>to GO</span></a></p>'; }
                             ?>
                                   
                     </div>
@@ -21,7 +21,7 @@
                         <a href="<?php echo ( is_home() || is_front_page() ) ? '#action' : $href; ?>" <?php if( is_home() || is_front_page() ) : ?>class="menu"<?php endif; ?>><?php echo __('Акции'); ?></a>
                     </div>
                     <div class="col-12 col-md-2 col-lg-2 d-none d-md-flex justify-content-center flex-column align-items-center">
-                        <a href="#main" class="menu"><img src="<?php echo get_template_directory_uri(); ?>/img/arrow-min.png" alt=""></a>
+                        <a href="#nav" class="menu"><img src="<?php echo get_template_directory_uri(); ?>/img/arrow-min.png" alt=""></a>
                     </div>
                     <div class="col-12 col-md-2 col-lg-2 d-flex flex-column justify-content-center flex-column align-items-center">
                         <a href="<?php echo ( is_home() || is_front_page() ) ? '#products' : $href; ?>" <?php if( is_home() || is_front_page() ) : ?>class="menu"<?php endif; ?>><?php echo __('Каталог'); ?></a>
@@ -76,8 +76,47 @@
                                 }
                             ]
                 });
-                var deadline = '<?php the_field('timer', 2); ?>';                 
-                initializeClock("clockdiv", deadline);
+                $('.reviews').slick({
+                            infinite: true,
+                            dots: false,
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                            prevArrow:"<button type='button' class='slick-prev pull-left'><img src='<?php echo get_template_directory_uri() ?>/img/arrow-min.png'></button>",
+                            nextArrow:"<button type='button' class='slick-next pull-right'><img src='<?php echo get_template_directory_uri() ?>/img/arrow-min.png'></button>",
+                            responsive: [
+                                {
+                                  breakpoint: 1024,
+                                  settings: {
+                                      slidesToShow: 3,
+                                  }
+                                },
+                                {
+                                  breakpoint: 850,
+                                  settings: {
+                                      slidesToShow: 2,
+                                  }
+                                },
+                                {
+                                  breakpoint: 768,
+                                  settings: {
+                                      slidesToShow: 1,
+                                  }
+                                }
+                            ]
+                });
+                <?php $pageID = get_option('page_on_front'); 
+                      $timer = get_field('timer', $pageID);
+                      if( isset($timer) && !empty( $timer) ) : ?>
+                        <?php $time = date('j', strtotime(get_field('timer', $pageID)) ) - date('j'); 
+                              if( $time > 0 ) : ?>
+                                var deadline = '<?php the_field('timer', $pageID); ?>';                 
+                                initializeClock("clockdiv", deadline);
+                        <?php else : ?>
+                            $('.time-message').addClass('d-none');
+                            $('section#timer p.desc').addClass('d-none');
+                            $('#deadline-messadge').removeClass('hidden');
+                        <?php endif; ?>
+                      <?php endif; ?>
             });
             </script>
         <?php endif; ?>
@@ -87,7 +126,7 @@
                 $('.similar__slide').slick({
                             infinite: true,
                             dots: false,
-                            slidesToShow: 4,
+                            slidesToShow: 3,
                             slidesToScroll: 1,
                             prevArrow:"<button type='button' class='slick-prev pull-left'><img src='<?php echo get_template_directory_uri() ?>/img/arrow-min.png'></button>",
                             nextArrow:"<button type='button' class='slick-next pull-right'><img src='<?php echo get_template_directory_uri() ?>/img/arrow-min.png'></button>",
@@ -115,12 +154,7 @@
                                 }
                             ]
                 });
-                $('.gallery__wrap img').each(function(){
-                    var href = $(this).attr('src');    
-                    $(this).wrap("<a href='" + href + "' rel='group' data-fancybox='group' class='fancybox gallery__modal'></a>"); 
-                });
                 $('.fancybox').fancybox({protect: true});
-                $('.gallery__modal').fancybox({protect: true,cyclic:true});
             });
         </script>  
         <?php endif; ?>
