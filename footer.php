@@ -187,6 +187,20 @@
                  <div class="value text-center d-flex justify-content-center align-items-center"></div>
         </div>
     </div>
+    <?php if( is_mobile() || wp_is_mobile() ) : ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($){
+                $('img').each(function(){
+                    var str = $(this).attr('src');
+                    var newStr = str.replace('webp', 'png');
+                    $(this).attr('src', newStr);
+                });
+                var template_href = '<?php echo get_template_directory_uri(); ?>';
+                $('section#main').find('.main-mobile.bgimg').removeClass('progressive').css({'background-image': 'url(' + template_href + '/img/mainbgsmall-min.png)'});
+                $('footer.bgimg').removeClass('progressive').css({'background-image': 'url(' + template_href + '/img/footerbg-min.png)'});
+            });
+        </script>
+    <?php endif; ?>
     <?php wp_footer(); ?>
 </body>
 </html>
