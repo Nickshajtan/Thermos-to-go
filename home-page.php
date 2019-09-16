@@ -5,10 +5,10 @@
  */
 get_header(); ?>
 <section id="main">
-    <?php if( !is_mobile() && is_plugin_active('revslider/revslider.php') ) : ?>
+    <?php if( !is_mobile() && !wp_is_mobile() && is_plugin_active('revslider/revslider.php') ) : ?>
         <?php putRevSlider("main") ?>
     <?php endif; ?>
-    <?php if( is_mobile ) : ?> 
+    <?php if( is_mobile() || wp_is_mobile()) : ?> 
     <div class="main-mobile d-flex d-xl-none bgimg progressive replace justify-content-center flex-column align-items-center">
         <h1 class="main__header">Возьмите с собой<br><mark>термос <span>to GO</span></mark></h1>
         <a href="#products" class="box-button d-flex align-items-center justify-content-center menu"><?php echo __('Купить сейчас'); ?></a>
