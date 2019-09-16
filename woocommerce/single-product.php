@@ -46,12 +46,22 @@
                        <?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
                        <?php if ( ! $product->is_sold_individually() )
                          woocommerce_quantity_input( array(
+                          'classes'   => apply_filters( 'woocommerce_quantity_input_classes', array( 'input-text', 'qty', 'text', 'd-none' ),  $product ),
                           'min_value' => apply_filters( 'woocommerce_quantity_input_min', 1, $product ),
-                          'max_value' => apply_filters( 'woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product )
+                          'max_value' => apply_filters( 'woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product ),
+                          'step'      => apply_filters( 'woocommerce_quantity_input_step', '1', $product ),
+                          'product_name' => $product ? $product->get_title() : '',
                          ) );
                        ?>
                        <span class="w-50 d-block ml-auto mr-auto quantity">
                            <span class="col-12 quantity-wrapper">
+                              <?php if( $product->get_stock_quantity() > 0 ) : ?>
+                                  <span class="d-none stock-product-quantity"><?php echo $product->get_stock_quantity(); ?></span>
+                                  <span class="d-none text-center stock-product-max" style="margin-bottom: 15px;"><strong><?php echo __('Вы выбрали весь доступный товар!'); ?></strong></span>
+                              <?php endif; ?>
+                              <?php if( $product->get_stock_quantity() < 0 || $product->get_stock_quantity() == 0 ) : ?>
+                                  <span class="d-block text-center stock-product-quantity" style="margin-bottom: 15px;"><strong><?php echo __('Товара нет в наличии'); ?></strong></span>
+                              <?php endif; ?>
                               <span class="row">
                                    <span class="col-2 plus d-flex justify-content-center align-items-center">+</span>
                                    <span class="col-8 value d-flex justify-content-center align-items-center"></span>
@@ -65,9 +75,10 @@
                               if( $cart != 0 ) : ?>
                                   <?php $cart = 'cart'; ?>
                               <?php endif; ?>
-                       <button type="submit" class="single_add_to_cart_button button alt box-button w-50 d-block ml-auto mr-auto <?php echo $cart; ?>" style="cursor:pointer;"><?php echo __('Купить сейчас'); ?></button>
+                       <button type="submit" class="single_add_to_cart_button button alt box-button w-50 d-block ml-auto mr-auto <?php echo $cart; ?>" <?php if( $product->get_stock_quantity() < 0 || $product->get_stock_quantity() == 0 ) : ?> disabled="disabled" style="opacity:0.7;"<?php else: ?> style="cursor:pointer;"<?php endif; ?>><?php echo __('Купить сейчас'); ?></button>
                       <?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
                      </form>
+                    <?php if( $product->get_stock_quantity() > 0 ) : ?>
                     <script>
                         jQuery(document).ready(function($) {
                             $('.gallery__wrap').each(function(){
@@ -81,18 +92,19 @@
                             var val = ipt.val();
                             div.text(val);
                             $('.quantity-wrapper .plus').on('click', function(){
-                                var max = ipt.attr('size');
+                                var max = $('.quantity-wrapper').find('.stock-product-quantity').text();
                                 var count = div.text();
-                                if( count <= max ){
+                                if( count < max ){
                                     count++;
                                     div.text(count);
                                     ipt.val(count);
                                 }
                                 else{
-                                    alert('Вы выбрали весь доступный товар!');
+                                    $('.quantity-wrapper').find('.stock-product-max').removeClass('d-none').addClass('d-block');
                                 }
                             });
                             $('.quantity-wrapper .minus').on('click', function(){
+                                $('.quantity-wrapper').find('.stock-product-max').removeClass('d-block').addClass('d-none');
                                 var max = 0;
                                 var count = div.text();
                                 if( count > max ){
@@ -111,6 +123,22 @@
                             }*/
                         });
                     </script>
+                    <?php endif; ?>
+                    <?php if( $product->get_stock_quantity() < 0 || $product->get_stock_quantity() == 0 ) : ?>
+                    <script>
+                        jQuery(document).ready(function($) {
+                            $('.gallery__wrap').each(function(){
+                                var href = $(this).find('span.hidden').text(); 
+                                $(this).find('img').wrap("<a href='" + href + "' rel='group' data-fancybox='group' class='fancybox gallery__modal'></a>"); 
+                            });
+                            $('.gallery__modal').fancybox({protect: true,cyclic:true});
+                            var ipt = $('.quantity input[name=quantity]');
+                            ipt.addClass('d-none');
+                            var div = $('.quantity-wrapper .value');
+                            div.text('0');
+                        });
+                    </script>
+                    <?php endif; ?>
  <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
                 </div>
             </div>
