@@ -265,7 +265,9 @@ if(isset($user_phone)&&!empty($user_phone)) {
                         <a href="'. get_bloginfo("url") . '/wp-admin" style="background-color:#1eb4e9;border:none; width: 70%;padding: 16px 15px;-webkit-border-radius: 49px;border-radius: 49px;margin:16px 0;color:#fff;font-size: 1rem;text-decoration:none;font-weight:600;">АДМИНИСТРИРОВАТЬ</a>
                </td>
             </tr>';
-        mail($admin_email,$subject,$message,$headers);
+	if( isset($user_phone)&&!empty($user_phone) && isset($user_name)&&!empty($user_name) ){
+		if( mail($admin_email,$subject,$message,$headers) ){}elseif( wp_mail($admin_email,$subject,$message,$headers) );    
+	}    
 }
 
 
