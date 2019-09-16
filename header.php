@@ -48,16 +48,16 @@ header('Pragma: no-cache'); // для совместимости
                             ?>
                         </li>
                         <li>
-                            <a href="<?php echo ( is_home() || is_front_page() ) ? '#about' : $href; ?>" <?php if( is_home() || is_front_page() ) : ?>class="menu"<?php endif; ?>><?php echo __('О нас'); ?></a>
+                            <a href="<?php echo ( is_home() || is_front_page() ) ? '#about' : $href . '#about'; ?>" <?php if( is_home() || is_front_page() ) : ?>class="menu"<?php endif; ?>><?php echo __('О нас'); ?></a>
                         </li>
                         <li>
-                            <a href="<?php echo ( is_home() || is_front_page() ) ? '#action' : $href; ?>" <?php if( is_home() || is_front_page() ) : ?>class="menu"<?php endif; ?>><?php echo __('Акции'); ?></a>
+                            <a href="<?php echo ( is_home() || is_front_page() ) ? '#action' : $href . '#action'; ?>" <?php if( is_home() || is_front_page() ) : ?>class="menu"<?php endif; ?>><?php echo __('Акции'); ?></a>
                         </li>
                         <li>
-                            <a href="<?php echo ( is_home() || is_front_page() ) ? '#products' : $href; ?>" <?php if( is_home() || is_front_page() ) : ?>class="menu"<?php endif; ?>><?php echo __('Каталог'); ?></a>
+                            <a href="<?php echo ( is_home() || is_front_page() ) ? '#products' : $href . '#products'; ?>" <?php if( is_home() || is_front_page() ) : ?>class="menu"<?php endif; ?>><?php echo __('Каталог'); ?></a>
                         </li>
                         <li>
-                            <a href="<?php echo ( is_home() || is_front_page() ) ? '#review' : $href; ?>" <?php if( is_home() || is_front_page() ) : ?>class="menu"<?php endif; ?>><?php echo __('Отзывы'); ?></a>
+                            <a href="<?php echo ( is_home() || is_front_page() ) ? '#review' : $href . '#review'; ?>" <?php if( is_home() || is_front_page() ) : ?>class="menu"<?php endif; ?>><?php echo __('Отзывы'); ?></a>
                         </li>
                         <li>
                             <div class="social d-flex flex-row">
