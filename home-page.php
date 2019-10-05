@@ -389,11 +389,11 @@ get_header(); ?>
                                         <div class="row">
                                             <div class="form-group col-12">
                                                 <label for="name" class="sr-only"><?php echo __('Ваше имя'); ?></label>
-                                                <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="<?php echo __('Ваше имя'); ?>">
+                                                <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="<?php echo __('Ваше имя'); ?>" required>
                                             </div>
                                             <div class="form-group col-12">
                                                         <label for="tel" class="sr-only"><?php echo __('Телефон'); ?></label>
-                                                        <input type="tel" class="form-control" id="tel" aria-describedby="tel" placeholder="<?php echo __('Телефон'); ?>">
+                                                        <input type="tel" class="form-control" id="tel" aria-describedby="tel" placeholder="<?php echo __('Телефон'); ?>" required>
                                             </div>
                                             <div class="form-group col-12">
                                                 <input type="submit" value="<?php echo __('Получить консультацию'); ?>" class="w-100">
